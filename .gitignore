@@ -1,6 +1,7 @@
 # Ignore rules
 *
 !*.sv
+!*.png
 !.gitignore
 
 # QuestaSim/ModelSim
