@@ -13,6 +13,10 @@ module count_1_tb;
 
   initial begin
     int out_tmp;
+
+    $dumpfile("waveform.vcd");
+    $dumpvars(0, uut);
+
     for (int i; i<16; i++) begin
       a = i;
       #5ns;
