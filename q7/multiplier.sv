@@ -4,7 +4,7 @@ in the book Arithmetic and Algebraic Circuits
 */
 
 module multiplier #(
-    parameter int N = 4
+    parameter int N = 5
 )(
     input  logic [N-1:0] x,
     input  logic [N-1:0] y,

@@ -1,22 +1,17 @@
 // signed_multiplier_tb.sv
 module signed_multiplier_tb;
 
-  localparam int N = 4;
+  localparam int N = 5;
 
-  // --- Signals ---
-  // Inputs and outputs are declared 'signed'
   logic signed [N-1:0] x, y;
   logic signed [2*N-1:0] m;
 
-  // --- DUT Instantiation ---
-  // Instantiate the top-level SIGNED multiplier
   signed_multiplier #(.N(N)) uut (
     .x(x),
     .y(y),
     .m(m)
   );
 
-  // --- Test Logic ---
   initial begin
     automatic int errors = 0;
     logic signed [2*N-1:0] expected_product;
@@ -24,17 +19,14 @@ module signed_multiplier_tb;
     $dumpfile("signed_waveform.vcd");
     $dumpvars(0, uut);
 
-    // Loop through all 2^N possible bit patterns for each input
-    for (int i = 0; i < (1 << N); i++) begin
-      for (int j = 0; j < (1 << N); j++) begin
-        // Assign the bit patterns to the signed inputs
+    for (int i = 0; i < 2**N; i++) begin
+      for (int j = 0; j < 2**N; j++) begin
         x = i;
         y = j;
 
-        // The simulator performs signed multiplication because x and y are signed
         expected_product = x * y;
 
-        #5ns; // Wait for the combinational logic to settle
+        #5ns; 
 
         if (m === expected_product) begin 
           $display("PASS: x = %d, y = %d, product = %d", x, y, m);
@@ -46,9 +38,9 @@ module signed_multiplier_tb;
     end
 
     if (errors == 0)
-        $display("SUCCESS! All 256 test cases passed.");
+        $display("SUCCESS! All %d test cases passed.", (1 << (2*N)));
     else
-        $display("FAILURE: %0d errors found.", errors);
+        $display("FAILURE: %0d errors found.", errors);S
     $finish;
   end
 

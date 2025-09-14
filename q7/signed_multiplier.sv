@@ -6,7 +6,7 @@ https://web.mit.edu/6.111/www/f2016/handouts/L08.pdf
 */
 
 module signed_multiplier #(
-    parameter int N = 4
+    parameter int N = 5
 )(
     input  logic signed [N-1:0] x,
     input  logic signed [N-1:0] y,

@@ -1,6 +1,6 @@
 module multiplier_tb;
 
-  localparam N = 4;
+  localparam N = 5;
 
   logic [N-1:0] x, y;
   logic [2*N-1:0] m;
